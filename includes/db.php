@@ -24,7 +24,7 @@ $db['db_name'] = "cms";
 foreach($db as $key => $value) {
 
 
-    //creating constants thwough the array.
+    //creating constants through the array.
     define(strtoupper($key), $value);
 
     }

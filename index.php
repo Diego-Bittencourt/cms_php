@@ -22,7 +22,31 @@ include "includes/header.php";
                     <small>Secondary Text</small>
                 </h1>
 
-                <!-- First Blog Post -->
+                <?php 
+                $query = "SELECT * FROM posts";
+                $select_all_posts = mysqli_query($connection, $query);
+
+                while ($row = mysqli_fetch_assoc($select_all_posts)) {
+                    $title = $row['post_title'];
+                    $author = $row['post_author'];
+                    $date = $row['post_date'];
+                    $image = $row['post_image'];
+                    $content = $row['post_content'];
+                    $comment_count = $row['post_comment_count'];
+
+                    echo "<h2><a href='#'>{$title}</a></h2>
+                          <p class='lead'> by {$author}</p>
+                          <p><span class='glyphicon glyphicon-time'></span> Posted on {$date}</p>
+                          <hr>
+                          <img class='img-responsive' src='{$image}' alt=''>
+                          <hr>
+                          <p>{$content}</p>
+                          <a class='btn btn-primary' href='#'> Read Mode <span class='glyphicon glyphicon-chevron-right'></span></a>";
+                };
+                
+                ?>
+<!-- 
+                First Blog Post
                 <h2>
                     <a href="#">Blog Post Title</a>
                 </h2>
@@ -34,7 +58,7 @@ include "includes/header.php";
                 <img class="img-responsive" src="http://via.placeholder.com/900x300?text=place_holder" alt="">
                 <hr>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
-                <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+                <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a> -->
 
                 <hr>
 
