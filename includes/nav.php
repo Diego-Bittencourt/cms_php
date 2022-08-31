@@ -1,3 +1,5 @@
+<?php include "db.php" ?>
+
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -13,7 +15,25 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li>
+
+                <!-- Inserting PHP -->
+                <?php 
+                $query = "SELECT * FROM categories";
+                $select_all_categories = mysqli_query($connection, $query);
+                
+                while ($row = mysqli_fetch_assoc($select_all_categories)) {
+                    $title = $row['cat_title'];
+
+                    echo "<li><a href='#'>{$title}</a></li>";
+                    //to put variables inside string use the {} brackets inside double quotes.
+                    //Im fetching data from the db and showing in the nav bar
+                }
+                
+                
+                
+                ?>
+
+                    <!-- <li>
                         <a href="#">About</a>
                     </li>
                     <li>
@@ -21,7 +41,10 @@
                     </li>
                     <li>
                         <a href="#">Contact</a>
-                    </li>
+                    </li> -->
+
+
+
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
