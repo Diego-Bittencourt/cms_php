@@ -26,6 +26,11 @@ include "includes/header.php";
                 $query = "SELECT * FROM posts";
                 $select_all_posts = mysqli_query($connection, $query);
 
+
+                //My aproach here was to echo a big chunk of data in one echo.
+                //Another approach is to close the php tag and put the html tags and use the php tag only on the places to put the variable, like
+                //<p><php? echo $content ></p>
+                //to work with images, you put on the dbase the reference to the image. A link or the name of the image in the site's folders
                 while ($row = mysqli_fetch_assoc($select_all_posts)) {
                     $title = $row['post_title'];
                     $author = $row['post_author'];
