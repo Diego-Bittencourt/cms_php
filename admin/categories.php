@@ -59,6 +59,17 @@ if(isset($_POST['submit'])) {
                                         <input class="btn btn-primary" type="submit" name="submit" value="Add Category">
                                     </div>
                                 </form> 
+
+<?php 
+
+if(isset($_GET['edit'])) {
+    $cat_id = $_GET['edit'];
+
+    include "includes/update_category.php";
+}
+
+?>
+
                             </div><!-- Add category form -->
 
                             <div class="col-xs-6">
@@ -88,6 +99,7 @@ while($row = mysqli_fetch_assoc($all_categories)) {
             <td>{$id}</td>
             <td>{$title}</td>
             <td><a href='categories.php?delete={$id}'>Delete</a></td>
+            <td><a href='categories.php?edit={$id}'>Edit</a></td>
             </tr>";
 }
 ?>
