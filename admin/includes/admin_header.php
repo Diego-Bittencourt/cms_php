@@ -1,3 +1,10 @@
+<?php ob_start(); 
+//The ob_start() function creates an output buffer. 
+//A callback function can be passed in to do processing 
+//on the contents of the buffer before it gets flushed 
+//from the buffer. Flags can be used to permit or restrict 
+//what the buffer is able to do.?>
+
 <?php include "../includes/db.php"?>
 
 
