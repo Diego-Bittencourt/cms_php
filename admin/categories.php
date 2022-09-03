@@ -63,12 +63,6 @@ if(isset($_POST['submit'])) {
 
                             <div class="col-xs-6">
 
-<?php 
-$query = "SELECT * FROM categories";
-$all_categories = mysqli_query($connection, $query);
-//fetching data from the mysql db and getting all categories
-?>
-
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
@@ -81,15 +75,41 @@ $all_categories = mysqli_query($connection, $query);
 
 
                                        
-                                        <?php 
+<?php 
+//Find all categories query
+$query = "SELECT * FROM categories";
+$all_categories = mysqli_query($connection, $query);
+//fetching data from the mysql db and getting all categories
+
 while($row = mysqli_fetch_assoc($all_categories)) {
     $title = $row['cat_title'];
     $id = $row['cat_id'];
     echo "<tr>
             <td>{$id}</td>
             <td>{$title}</td>
+            <td><a href='categories.php?delete={$id}'>Delete</a></td>
             </tr>";
 }
+?>
+
+<?php 
+//Delete a category
+if (isset($_GET['delete'])) {
+    $delete_id = $_GET['delete'];
+    $query = "DELETE FROM categories ";
+    $query .= "WHERE cat_id='{$delete_id}'";
+
+    $deleted = mysqli_query($connection, $query);
+
+    if ($deleted) {
+        echo "Deleted!";
+        header("Location: categories.php");
+        //This header function with that argument just refreshes the page.
+    } else {
+        echo "Something went wrong.";
+    };
+}
+
 ?>
                                             
                                         
