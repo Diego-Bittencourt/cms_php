@@ -5,7 +5,10 @@
 //from the buffer. Flags can be used to permit or restrict 
 //what the buffer is able to do.?>
 
-<?php include "../includes/db.php"?>
+<?php
+include "../includes/db.php";
+include "functions.php";
+?>
 
 
 <!DOCTYPE html>
