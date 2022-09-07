@@ -50,8 +50,22 @@ while($row = mysqli_fetch_assoc($select_posts)) {
                                     <td>{$post_comments}</td>
                                     <td>{$post_date}</td>
                                     <td>{$post_content}</td>
+                                    <td><a href='posts.php?delete={$post_id}'>Delete</a></td>
                                 </tr>";
  } ?> <!-- catching the end of the while loop. -->
                             </tbody>
                         </table>
             
+<?php 
+
+if(isset($_GET['delete'])) {
+    $delete_post = $_GET['delete'];
+    $query = "DELETE FROM posts WHERE post_id = $delete_post";
+    $delete_post_query = mysqli_query($connection, $query);
+
+    confirm($delete_post_query);
+    
+    header("Location: posts.php");
+
+};
+?>
