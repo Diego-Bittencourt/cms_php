@@ -50,6 +50,7 @@ while($row = mysqli_fetch_assoc($select_posts)) {
                                     <td>{$post_comments}</td>
                                     <td>{$post_date}</td>
                                     <td>{$post_content}</td>
+                                    <td><a href='posts.php?source=edit_post&post_id={$post_id}'>Edit</a></td>
                                     <td><a href='posts.php?delete={$post_id}'>Delete</a></td>
                                 </tr>";
  } ?> <!-- catching the end of the while loop. -->
