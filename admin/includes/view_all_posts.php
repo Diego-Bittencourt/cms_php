@@ -45,7 +45,7 @@ while($row = mysqli_fetch_assoc($select_posts)) {
                                     <td>{$post_title}</td>
                                     <td>{$post_category}</td>
                                     <td>{$post_status}</td>
-                                    <td><img src='{$post_image}' height='20px' width='20px'></td>
+                                    <td><img src='../../images/{$post_image}' height='100px' width='auto'></td>
                                     <td>{$post_tags}</td>
                                     <td>{$post_comments}</td>
                                     <td>{$post_date}</td>
