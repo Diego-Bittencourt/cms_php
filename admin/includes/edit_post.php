@@ -3,8 +3,7 @@ if(isset($_GET['post_id'])) {
     $edit_post_id = $_GET['post_id'];
 };
 
-$query = "SELECT * FROM posts ";
-$query .= "WHERE post_id = $edit_post_id";
+$query = "SELECT * FROM posts WHERE post_id = $edit_post_id ";
 $select_posts_by_id = mysqli_query($connection, $query);
 
 while($row = mysqli_fetch_assoc($select_posts_by_id)) {
@@ -21,7 +20,47 @@ while($row = mysqli_fetch_assoc($select_posts_by_id)) {
 }
 
 
+if(isset($_POST['edit_post'])) {
+   
+    $post_author = $_POST['post_author'];
+    $post_status = $_POST['post_status'];
+    $post_category = $_POST['post_category_id'];
+    // $post_date = $_POST['post_date'];
+    $post_image = $_FILES['image']['name'];
+    $post_image_temp = $_FILES['image']['tmp_name'];
+    $post_content = $_POST['post_content'];
+    $post_tags = $_POST['post_tags'];
+    // $post_comment_count = $_POST['post_comment_count'];
+    $post_status = $_POST['post_status'];
 
+    move_uploaded_file($post_image_temp, "../images/$post_image");
+
+
+    if(empty($post_image)) {
+        $query = "SELECT * FROM posts WHERE post_id = {$post_id} ";
+        $select_image = mysqli_query($connection, $query);
+
+        while($row = mysqli_fetch_assoc($select_image)) {
+            $post_image = $row['post_image'];
+        }
+    }
+
+    $query = "UPDATE posts SET ";
+    $query .= "post_title = '{$post_title}', ";
+    $query .= "post_category_id = '{$post_category}', ";
+    $query .= "post_date = now(), ";
+    $query .= "post_author = '{$post_author}', ";
+    $query .= "post_status = '{$post_status}', ";
+    $query .= "post_tags = '{$post_tags}', ";
+    $query .= "post_content = '{$post_content}', ";
+    $query .= "post_image = '{$post_image}' ";
+    $query .= "WHERE post_id = '{$post_id}' ";
+
+        $update_post = mysqli_query($connection, $query);
+
+        confirm($update_post);
+
+}
 
 
 
