@@ -10,7 +10,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Start Bootstrap</a>
+                <a class="navbar-brand" href="index.php">Top</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -23,8 +23,9 @@
                 
                 while ($row = mysqli_fetch_assoc($select_all_categories)) {
                     $title = $row['cat_title'];
+                    $cat_id = $row['cat_id'];
 
-                    echo "<li><a href='#'>{$title}</a></li>";
+                    echo "<li><a href='category.php?c_id={$cat_id}'>{$title}</a></li>";
                     //to put variables inside string use the {} brackets inside double quotes.
                     //Im fetching data from the db and showing in the nav bar
                 }

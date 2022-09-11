@@ -50,8 +50,9 @@ $select_all_categories_sidebar = mysqli_query($connection, $query);
                 
                 while($row = mysqli_fetch_assoc($select_all_categories_sidebar)) {
                     $cat_title = $row['cat_title'];
+                    $cat_id = $row['cat_id'];
                 
-                    echo "<li><a href='#'>{$cat_title}</a></li>";
+                    echo "<li><a href='category.php?c_id={$cat_id}'>{$cat_title}</a></li>";
                 }
                 
                 ?>
@@ -59,20 +60,7 @@ $select_all_categories_sidebar = mysqli_query($connection, $query);
 
             </ul>
         </div>
-        <!-- /.col-lg-6 -->
-        <div class="col-lg-6">
-            <ul class="list-unstyled">
-                <li><a href="#">Category Name</a>
-                </li>
-                <li><a href="#">Category Name</a>
-                </li>
-                <li><a href="#">Category Name</a>
-                </li>
-                <li><a href="#">Category Name</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.col-lg-6 -->
+        
     </div>
     <!-- /.row -->
 </div>
