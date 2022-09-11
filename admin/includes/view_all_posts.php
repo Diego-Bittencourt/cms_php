@@ -34,7 +34,13 @@ while($row = mysqli_fetch_assoc($select_posts)) {
 
 
 
-
+    $category_query = "SELECT * FROM categories WHERE cat_id='{$post_category}'" ;
+    $result_category_query = mysqli_query($connection, $category_query);
+    //Making a quey to the other table to fetch the category title and display it on the table. 
+    while($row = mysqli_fetch_assoc($result_category_query)) {
+        $cat_id = $row['cat_id'];
+        $cat_title = $row['cat_title'];
+    }
 
 
 
@@ -43,7 +49,7 @@ while($row = mysqli_fetch_assoc($select_posts)) {
                                     <td>{$post_id}</td>
                                     <td>{$post_author}</td>
                                     <td>{$post_title}</td>
-                                    <td>{$post_category}</td>
+                                    <td>{$cat_title}</td>
                                     <td>{$post_status}</td>
                                     <td><img src='../../images/{$post_image}' height='100px' width='auto'></td>
                                     <td>{$post_tags}</td>
