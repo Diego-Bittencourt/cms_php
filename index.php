@@ -32,6 +32,7 @@ include "includes/header.php";
                 //<p><php? echo $content ></p>
                 //to work with images, you put on the dbase the reference to the image. A link or the name of the image in the site's folders
                 while ($row = mysqli_fetch_assoc($select_all_posts)) {
+                    $post_id = $row['post_id'];
                     $title = $row['post_title'];
                     $author = $row['post_author'];
                     $date = $row['post_date'];
@@ -39,31 +40,17 @@ include "includes/header.php";
                     $content = $row['post_content'];
                     $comment_count = $row['post_comment_count'];
 
-                    echo "<h2><a href='#'>{$title}</a></h2>
+                    echo "<h2><a href='post.php?p_id={$post_id}'>{$title}</a></h2>
                           <p class='lead'> by {$author}</p>
                           <p><span class='glyphicon glyphicon-time'></span> Posted on {$date}</p>
                           <hr>
-                          <img class='img-responsive' src='images/{$image}' alt=''>
+                          <a href='post.php?p_id={$post_id}'><img class='img-responsive' src='images/{$image}' alt=''></a>
                           <hr>
                           <p>{$content}</p>
                           <a class='btn btn-primary' href='#'> Read Mode <span class='glyphicon glyphicon-chevron-right'></span></a>";
                 };
                 
                 ?>
-<!-- 
-                First Blog Post
-                <h2>
-                    <a href="#">Blog Post Title</a>
-                </h2>
-                <p class="lead">
-                    by <a href="index.php">Start Bootstrap</a>
-                </p>
-                <p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM</p>
-                <hr>
-                <img class="img-responsive" src="http://via.placeholder.com/900x300?text=place_holder" alt="">
-                <hr>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
-                <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a> -->
 
                 <hr>
 
