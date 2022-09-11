@@ -43,7 +43,7 @@ include "includes/header.php";
                           <p class='lead'> by {$author}</p>
                           <p><span class='glyphicon glyphicon-time'></span> Posted on {$date}</p>
                           <hr>
-                          <img class='img-responsive' src='{$image}' alt=''>
+                          <img class='img-responsive' src='images/{$image}' alt=''>
                           <hr>
                           <p>{$content}</p>
                           <a class='btn btn-primary' href='#'> Read Mode <span class='glyphicon glyphicon-chevron-right'></span></a>";

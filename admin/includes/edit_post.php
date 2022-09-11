@@ -24,7 +24,8 @@ if(isset($_POST['edit_post'])) {
    
     $post_author = $_POST['post_author'];
     $post_status = $_POST['post_status'];
-    $post_category = $_POST['post_category_id'];
+    $post_category = $_POST['post_category'];
+    $post_title = $_POST['post_title'];
     // $post_date = $_POST['post_date'];
     $post_image = $_FILES['image']['name'];
     $post_image_temp = $_FILES['image']['tmp_name'];
@@ -70,11 +71,15 @@ if(isset($_POST['edit_post'])) {
 <form action="" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label for="title">Post Title</label>
-        <input value="<?php echo $post_title?>" type="text" class="form-control" name="title">
+        <input value="<?php echo $post_title?>" type="text" class="form-control" name="post_title">
     </div>
 
     <div class="form-groupd">
-        <select name="post_category" id="post_cagetory">
+        <label for="post_category">
+            Post Category
+        </label>
+        <br>
+        <select class="form-select me-3" name="post_category" id="post_cagetory">
 
 <?php 
 
@@ -102,12 +107,7 @@ if(isset($_POST['edit_post'])) {
 
 
 
-    <div class="form-group">
-        <label for="post_category">
-            Post Category Id
-        </label>
-        <input type="text" class="form-control" name="post_category_id" value="<?php echo $post_id ?>">
-    </div>
+    
     <div class="form-group">
         <label for="post_author">
             Post Author
