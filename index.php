@@ -37,7 +37,7 @@ include "includes/header.php";
                     $author = $row['post_author'];
                     $date = $row['post_date'];
                     $image = $row['post_image'];
-                    $content = $row['post_content'];
+                    $content = substr($row['post_content'], 0, 100);
                     $comment_count = $row['post_comment_count'];
 
                     echo "<h2><a href='post.php?p_id={$post_id}'>{$title}</a></h2>
