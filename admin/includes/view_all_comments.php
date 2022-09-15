@@ -4,61 +4,39 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Author</th>
-                                    <th>Title</th>
-                                    <th>Category</th>
-                                    <th>Status</th>
-                                    <th>Image</th>
-                                    <th>Tags</th>
-                                    <th>Comments</th>
-                                    <th>Date</th>
+                                    <th>Email</th>
                                     <th>Content</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
 
 <?php 
 $query = "SELECT * FROM comments";
-$select_posts = mysqli_query($connection, $query);
+$select_comments = mysqli_query($connection, $query);
 
-while($row = mysqli_fetch_assoc($select_posts)) {
-    $post_id = $row['post_id'];
-    $post_author = $row['post_author'];
-    $post_title = $row['post_title'];
-    $post_category = $row['post_category_id'];
-    $post_status = $row['post_status'];
-    $post_image = $row['post_image'];
-    $post_tags = $row['post_tags'];
-    $post_comments = $row['post_comment_count'];
-    $post_date = $row['post_date'];
-    $post_content = $row['post_content'];
+while($row = mysqli_fetch_assoc($select_comments)) {
+    $comment_id = $row['comment_id'];
+    $comment_post_id = $row['comment_post_id'];
+    $comment_date = $row['comment_date'];
+    $comment_author = $row['comment_author'];
+    $comment_email = $row['comment_email'];
+    $comment_content = $row['comment_content'];
+    $comment_status = $row['comment_status'];
 
 
 
-    $category_query = "SELECT * FROM categories WHERE cat_id='{$post_category}'" ;
-    $result_category_query = mysqli_query($connection, $category_query);
-    //Making a quey to the other table to fetch the category title and display it on the table. 
-    while($row = mysqli_fetch_assoc($result_category_query)) {
-        $cat_id = $row['cat_id'];
-        $cat_title = $row['cat_title'];
-    }
-
-
-
+    
 
                                echo "<tr>
-                                    <td>{$post_id}</td>
-                                    <td>{$post_author}</td>
-                                    <td>{$post_title}</td>
-                                    <td>{$cat_title}</td>
-                                    <td>{$post_status}</td>
-                                    <td><img src='../../images/{$post_image}' height='100px' width='auto'></td>
-                                    <td>{$post_tags}</td>
-                                    <td>{$post_comments}</td>
-                                    <td>{$post_date}</td>
-                                    <td>{$post_content}</td>
-                                    <td><a href='posts.php?source=edit_post&post_id={$post_id}'>Edit</a></td>
-                                    <td><a href='posts.php?delete={$post_id}'>Delete</a></td>
-                                </tr>";
+                                    <td>{$comment_id}</td>
+                                    <td>{$comment_author}</td>
+                                    <td>{$comment_email}</td>
+                                    <td>{$comment_content}</td>
+                                    <td>{$comment_date}</td>
+                                    <td>{$comment_status}</td>
+                                    </tr>";
  } ?> <!-- catching the end of the while loop. -->
                             </tbody>
                         </table>
