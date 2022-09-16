@@ -67,14 +67,14 @@ if(isset($_POST['create_comment'])) {
     $comment_email = $_POST['comment_email'];
     $comment_content = $_POST['comment_content'];
 
-    $insert_comment_query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_status, comment_date )";
-    $insert_comment_query .= "VALUE ($the_post_id, '{$comment_author}', '{$comment_email}', 'unapproved', now())";
+    $insert_comment_query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content, comment_status, comment_date )";
+    $insert_comment_query .= "VALUE ('{$the_post_id}', '{$comment_author}', '{$comment_email}', '{$comment_content}', 'unapproved', now())";
 
     $create_comment_query = mysqli_query($connection, $insert_comment_query);
 
-    if($create_comment_query) {
-        die('Query failed' . mysqli_error($connection));
-    }
+    // if($create_comment_query) {
+    //     die('Query failed' . mysqli_error($connection));
+    // }
 
 }
 

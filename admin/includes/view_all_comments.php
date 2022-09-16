@@ -17,6 +17,7 @@
                             <tbody>
 
 <?php 
+//query to select all comments
 $query = "SELECT * FROM comments";
 $select_comments = mysqli_query($connection, $query);
 
@@ -29,6 +30,7 @@ while($row = mysqli_fetch_assoc($select_comments)) {
     $comment_content = $row['comment_content'];
     $comment_status = $row['comment_status'];
 
+//query to fetch the post title to display it, along the link to it, in the ADMIN table
 $find_post_query = "SELECT * FROM posts WHERE post_id = '{$comment_post_id}' ";
 $select_post_id = mysqli_query($connection, $find_post_query);
 
@@ -36,7 +38,6 @@ while($row = mysqli_fetch_assoc($select_post_id)) {
     $post_id = $row['post_id'];
     $post_title = $row['post_title'];
 }
-
 
     
 
@@ -46,11 +47,11 @@ while($row = mysqli_fetch_assoc($select_post_id)) {
                                     <td>{$comment_content}</td>
                                     <td>{$comment_email}</td>
                                     <td>{$comment_status}</td>
-                                    <td>{$post_title}</td>
+                                    <td><a href='../post.php?p_id={$post_id}' target='_blank'>{$post_title}</a></td>
                                     <td>{$comment_date}</td>
                                     <td><a href=''>Approve</a></td>
                                     <td><a href=''>Unapprove</a></td>
-                                    <td><a href=''>Delete</a></td>
+                                    <td><a href='comments.php?delete={$comment_id}'>Delete</a></td>
                                     </tr>";
  } ?> <!-- catching the end of the while loop. -->
                             </tbody>
@@ -59,13 +60,13 @@ while($row = mysqli_fetch_assoc($select_post_id)) {
 <?php 
 
 if(isset($_GET['delete'])) {
-    $delete_post = $_GET['delete'];
-    $query = "DELETE FROM posts WHERE post_id = $delete_post";
-    $delete_post_query = mysqli_query($connection, $query);
+    $delete_comment = $_GET['delete'];
+    $query = "DELETE FROM comments WHERE comment_id = $delete_comment";
+    $delete_comment_query = mysqli_query($connection, $query);
 
-    confirm($delete_post_query);
+    confirm($delete_comment_query);
     
-    header("Location: posts.php");
+    header("Location: comments.php");
 
 };
 ?>
