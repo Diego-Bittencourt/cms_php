@@ -58,7 +58,24 @@ echo "<h2><a href='#'>{$title}</a></h2>
 
 <?php 
 if(isset($_POST['create_comment'])) {
-    echo "it's working";
+    
+    //getting the data via url args
+    $the_post_id = $_GET['p_id'];
+
+    //getting the data from the submit event
+    $comment_author = $_POST['comment_author'];
+    $comment_email = $_POST['comment_email'];
+    $comment_content = $_POST['comment_content'];
+
+    $insert_comment_query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_status, comment_date )";
+    $insert_comment_query .= "VALUE ($the_post_id, '{$comment_author}', '{$comment_email}', 'unapproved', now())";
+
+    $create_comment_query = mysqli_query($connection, $insert_comment_query);
+
+    if($create_comment_query) {
+        die('Query failed' . mysqli_error($connection));
+    }
+
 }
 
 ?>
