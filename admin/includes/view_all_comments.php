@@ -49,8 +49,8 @@ while($row = mysqli_fetch_assoc($select_post_id)) {
                                     <td>{$comment_status}</td>
                                     <td><a href='../post.php?p_id={$post_id}' target='_blank'>{$post_title}</a></td>
                                     <td>{$comment_date}</td>
-                                    <td><a href=''>Approve</a></td>
-                                    <td><a href=''>Unapprove</a></td>
+                                    <td><a href='comments.php?approve={$comment_id}'>Approve</a></td>
+                                    <td><a href='comments.php?unapprove={$comment_id}'>Unapprove</a></td>
                                     <td><a href='comments.php?delete={$comment_id}'>Delete</a></td>
                                     </tr>";
  } ?> <!-- catching the end of the while loop. -->
@@ -58,7 +58,7 @@ while($row = mysqli_fetch_assoc($select_post_id)) {
                         </table>
             
 <?php 
-
+//Deleting comment
 if(isset($_GET['delete'])) {
     $delete_comment = $_GET['delete'];
     $query = "DELETE FROM comments WHERE comment_id = $delete_comment";
@@ -66,6 +66,26 @@ if(isset($_GET['delete'])) {
 
     confirm($delete_comment_query);
     
+    header("Location: comments.php");
+
+};
+
+//unapprove coment
+if(isset($_GET['unapprove'])) {
+    $unapprove_comment_id = $_GET['unapprove'];
+    $query = "UPDATE comments SET comment_status = 'unapprove' WHERE comment_id = '{$unapprove_comment_id}' ";
+    $unaprove_comment_query = mysqli_query($connection, $query);
+
+    header("Location: comments.php");
+
+};
+
+//approve coment
+if(isset($_GET['approve'])) {
+    $approve_comment_id = $_GET['approve'];
+    $query = "UPDATE comments SET comment_status = 'approve' WHERE comment_id = '{$approve_comment_id}' ";
+    $aprove_comment_query = mysqli_query($connection, $query);
+
     header("Location: comments.php");
 
 };
