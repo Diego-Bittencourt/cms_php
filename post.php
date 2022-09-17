@@ -48,9 +48,19 @@ echo "<h2><a href='#'>{$title}</a></h2>
         <img class='img-responsive' src='images/{$image}' alt=''>
         <hr>
         <p>{$content}</p>
-        <a class='btn btn-primary' href='#'> Read Mode <span class='glyphicon glyphicon-chevron-right'></span></a>";
+        <a class='btn btn-primary' href='#'> Read Mode <span class='glyphicon glyphicon-chevron-right'></span></a>
+        <br>";
 };
 
+?>
+
+<br>
+<?php 
+
+$count_query = "SELECT COUNT(post_id) as comment_count FROM posts WHERE post_category_id = '{$comment_count}' ";
+$comment_count_query = mysqli_query($connection, $count_query);
+$comment_counted = mysqli_fetch_array($comment_count_query);
+echo $comment_count
 ?>
 
                 <!-- Blog Comments -->
@@ -82,7 +92,9 @@ if(isset($_POST['create_comment'])) {
 
 
                 <!-- Comments Form -->
+                <br>
                 <div class="well">
+                    
                     <h4>Leave a Comment:</h4>
                     
                     <form role="form" action="" method="post">
