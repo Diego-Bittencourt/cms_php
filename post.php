@@ -57,10 +57,21 @@ echo "<h2><a href='#'>{$title}</a></h2>
 <br>
 <?php 
 
-$count_query = "SELECT COUNT(post_id) as comment_count FROM posts WHERE post_category_id = '{$comment_count}' ";
-$comment_count_query = mysqli_query($connection, $count_query);
-$comment_counted = mysqli_fetch_array($comment_count_query);
-echo $comment_count
+//fetching the comments count
+$the_post_id = $_GET['p_id'];
+$comment_count_query = "SELECT COUNT(comment_id) as comment_count FROM comments WHERE comment_post_id = '{$the_post_id}' ";
+$comment_count_query .= "AND comment_status = 'approved' ";
+$get_count = mysqli_query($connection, $comment_count_query);
+if(!$get_count) {
+    die('Count error' . mysqli_error($connection));
+}
+
+while ($row = mysqli_fetch_assoc($get_count)) {
+    $count_number = $row['comment_count'];
+
+    echo "<h3>Number of comments: {$count_number}</h3>";
+}
+
 ?>
 
                 <!-- Blog Comments -->
@@ -120,8 +131,10 @@ if(isset($_POST['create_comment'])) {
 
 <?php 
 
+
+
 //fetching approved and post related comments
-$the_post_id = $_GET['p_id'];
+// $the_post_id = $_GET['p_id'];
 $comments_query = "SELECT * FROM comments WHERE comment_post_id = '{$the_post_id}' ";
 $comments_query .= "AND comment_status = 'approved' ";
 $comments_query .= "ORDER BY comment_id DESC ";
