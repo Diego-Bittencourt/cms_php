@@ -17,14 +17,15 @@ include "includes/header.php";
             <!-- Blog Entries Column -->
             <div class="col-md-8">
 
-                <h1 class="page-header">
-                    Page Heading
-                    <small>Secondary Text</small>
-                </h1>
-
                 <?php 
-                $query = "SELECT * FROM posts";
+                $query = "SELECT * FROM posts WHERE post_status = 'published' ";
                 $select_all_posts = mysqli_query($connection, $query);
+                if (mysqli_num_rows($select_all_posts) == 0) {
+                    //if the array with the data comes empty from the database, show the following.
+                    //note that I tried to use the empty() function but it didn't work. this approach seems more reasonable
+                    //in this approach, I'm checking if the result of the query has any row.
+                    echo "<h1>No posts available</h1>";
+                } else {
 
 
                 //My aproach here was to echo a big chunk of data in one echo.
@@ -49,7 +50,7 @@ include "includes/header.php";
                           <p>{$content}</p>
                           <a class='btn btn-primary' href='#'> Read Mode <span class='glyphicon glyphicon-chevron-right'></span></a>";
                 };
-                
+            } // end if>else statmente if the array has data
                 ?>
 
                 <hr>
