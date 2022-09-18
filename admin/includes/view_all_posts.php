@@ -12,6 +12,9 @@
                                     <th>Comments</th>
                                     <th>Date</th>
                                     <th>Content</th>
+                                    <th>Edit</th>
+                                    <th>Publish</th>
+                                    <th>Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -57,6 +60,7 @@ while($row = mysqli_fetch_assoc($select_posts)) {
                                     <td>{$post_date}</td>
                                     <td>{$post_content}</td>
                                     <td><a href='posts.php?source=edit_post&post_id={$post_id}'>Edit</a></td>
+                                    <td><a href='posts.php?publish={$post_id}'>Publish</a></td>
                                     <td><a href='posts.php?delete={$post_id}'>Delete</a></td>
                                 </tr>";
  } ?> <!-- catching the end of the while loop. -->
@@ -75,4 +79,14 @@ if(isset($_GET['delete'])) {
     header("Location: posts.php");
 
 };
+
+if(isset($_GET['publish'])) {
+    $publish_post = $_GET['publish'];
+    $query = "UPDATE posts SET post_status = 'published' WHERE post_id = '{$publish_post}' ";
+    $publish_post_query = mysqli_query($connection, $query);
+
+    confirm($publish_post_query);
+
+    header("Location: posts.php");
+}
 ?>
