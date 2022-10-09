@@ -24,7 +24,7 @@ if(isset($_GET['source'])) {
 
 switch($source) {
 
-    case "add_post";
+    case "add_user";
     include "includes/add_user.php";
     break;
 
