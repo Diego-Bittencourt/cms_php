@@ -60,7 +60,7 @@
                                 <a href="#">Dropdown Item</a>
                             </li>
                             <li>
-                                <a href="#">Dropdown Item</a>
+                                <a href="users.php">All users</a>
                             </li>
                         </ul>
                     </li>
