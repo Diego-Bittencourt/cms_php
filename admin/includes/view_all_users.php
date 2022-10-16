@@ -30,7 +30,7 @@ while($row = mysqli_fetch_assoc($select_users)) {
     $user_password = $row['user_password'];
     $user_email = $row['user_email'];
     $user_image = $row['user_image'];
-    $user_role = $row['role'];
+    $user_role = $row['user_role'];
     $user_randSalt = $row['randSalt'];
 
 
@@ -65,23 +65,5 @@ if(isset($_GET['delete'])) {
 
 };
 
-//unapprove coment
-if(isset($_GET['unapprove'])) {
-    $unapprove_comment_id = $_GET['unapprove'];
-    $query = "UPDATE comments SET comment_status = 'unapproved' WHERE comment_id = '{$unapprove_comment_id}' ";
-    $unaprove_comment_query = mysqli_query($connection, $query);
 
-    header("Location: comments.php");
-
-};
-
-//approve coment
-if(isset($_GET['approve'])) {
-    $approve_comment_id = $_GET['approve'];
-    $query = "UPDATE comments SET comment_status = 'approved' WHERE comment_id = '{$approve_comment_id}' ";
-    $aprove_comment_query = mysqli_query($connection, $query);
-
-    header("Location: comments.php");
-
-};
 ?>

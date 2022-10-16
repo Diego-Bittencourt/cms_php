@@ -24,6 +24,8 @@ if(isset($_POST['create_user'])) {
     // echo print_r($create_post_query);
 
     confirm($create_user_query);
+
+    header("Location: users.php");
 }
 
 
@@ -50,7 +52,7 @@ if(isset($_POST['create_user'])) {
         <br>
         <select class="form-select me-3" name="user_role" id="user_role">
             <option value="admin">Admin</option>
-            <option value="user">User</option>
+            <option value="sub">Subscriber</option>
         </select>
     </div>
 
