@@ -2,7 +2,26 @@
 
 
 if(isset($_GET['edit_user'])) {
-    echo $the_user_id = $_GET['edit_user'];
+    $the_user_id = $_GET['edit_user'];
+
+    
+    
+}
+
+$query = "SELECT * FROM users WHERE user_id={$the_user_id}";
+
+$fetch_user_data = mysqli_query($connection, $query);
+
+confirm($fetch_user_data);
+
+while($row = mysqli_fetch_assoc($fetch_user_data)) {
+    $username = $row['username'];
+    $password = $row['password'];
+    $user_role = $row['user_role'];
+    $user_first = $row['user_firstname'];
+    $user_last = $row['user_lastname'];
+    $user_email = $row['user_email'];
+    $user_image = $row['user_image'];
 }
 
 
@@ -44,13 +63,13 @@ if(isset($_POST['edit_user'])) {
 <form action="" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label for="username">Username</label>
-        <input type="text" class="form-control" name="username">
+        <input type="text" class="form-control" name="username" value="<?php echo $username ?>">
     </div>
     <div class="form-group">
         <label for="password">
             Password
         </label>
-        <input type="password" class="form-control" name="password">
+        <input type="password" class="form-control" name="password" value="<?php echo $password ?>>
     </div>
     <div class="form-groupd">
         <label for="user_role">
@@ -67,13 +86,13 @@ if(isset($_POST['edit_user'])) {
         <label for="first_name">
            First Name
         </label>
-        <input type="text" class="form-control" name="first_name">
+        <input type="text" class="form-control" name="first_name" value="<?php echo $user_first ?>">
     </div>
     <div class="form-group">
         <label for="last_name">
             Last Name
         </label>
-        <input type="text" class="form-control" name="last_name">
+        <input type="text" class="form-control" name="last_name" value="<?php echo $user_last ?>">
     </div>
     <div class="form-group">
         <label for="user_image">
@@ -86,9 +105,9 @@ if(isset($_POST['edit_user'])) {
         <label for="email">
             Email
         </label>
-        <input type="email" name="email" class="form-control" >
+        <input type="email" name="email" class="form-control" value="<?php echo $user_email ?>">
     </div>
     <div class="form-group">
-        <input type="submit" class="btn btn-primary" name="edit_user" value="Add User">
+        <input type="submit" class="btn btn-primary" name="edit_user" value="Edit User">
     </div>
 </form>
