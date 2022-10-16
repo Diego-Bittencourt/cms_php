@@ -45,7 +45,7 @@ while($row = mysqli_fetch_assoc($select_users)) {
                                     <td><img src='{$user_image}'></td>
                                     <td>{$user_role}</td>
                                     <td>{$user_randSalt}</td>
-                                    <td><a href='edit_user.php?edit={$user_id}'>Edit</a></td>
+                                    <td><a href='users.php?source=edit_user&edit={$user_id}'>Edit</a></td>
                                     <td><a href='users.php?delete={$user_id}'>Delete</a></td>
                                     </tr>";
  } ?> <!-- catching the end of the while loop. -->
