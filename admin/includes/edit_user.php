@@ -8,12 +8,14 @@ if(isset($_GET['edit_user'])) {
     
 }
 
+// query to fetch data from the db
 $query = "SELECT * FROM users WHERE user_id={$the_user_id}";
 
 $fetch_user_data = mysqli_query($connection, $query);
 
 confirm($fetch_user_data);
 
+// assigning variables
 while($row = mysqli_fetch_assoc($fetch_user_data)) {
     $username = $row['username'];
     $password = $row['password'];
@@ -59,7 +61,7 @@ if(isset($_POST['edit_user'])) {
 ?>
 
 
-
+<!-- Form to edit user -->
 <form action="" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label for="username">Username</label>
@@ -111,3 +113,4 @@ if(isset($_POST['edit_user'])) {
         <input type="submit" class="btn btn-primary" name="edit_user" value="Edit User">
     </div>
 </form>
+<!-- End form to edit user -->
